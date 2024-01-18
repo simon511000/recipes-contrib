@@ -1,0 +1,41 @@
+{
+    "manifests": {
+        "qossmic/qdrant-openai-bundle": {
+            "manifest": {
+                "bundles": {
+                    "Qossmic\\QdrantOpenaiBundle\\QdrantOpenaiBundle": [
+                        "all"
+                    ]
+                },
+                "copy-from-recipe": {
+                    "config/": "%CONFIG_DIR%/"
+                },
+                "env": {
+                    "QDRANT_API_KEY": "<your qdrant api key>",
+                    "QDRANT_API_ENDPOINT": "<your qdrant cloud provider dsn>",
+                    "QDRANT_API_PORT": "<your qdrant cloud provider port>",
+                    "OPENAI_API_KEY": "<your openai api key>",
+                    "OPENAI_ORGANIZATION": "<your openai organization>"
+                }
+            },
+            "files": {
+                "config/packages/qdrant_openai.yaml": {
+                    "contents": [
+                        "qdrant_openai:",
+                        "    qdrant:",
+                        "        key: '%env(resolve:QDRANT_API_KEY)%'",
+                        "        endpoint: '%env(resolve:QDRANT_API_ENDPOINT)%'",
+                        "        port: '%env(int:QDRANT_API_PORT)%'",
+                        "",
+                        "    openai:",
+                        "        key: '%env(resolve:OPENAI_API_KEY)%'",
+                        "        organization: '%env(resolve:OPENAI_ORGANIZATION)%'",
+                        ""
+                    ],
+                    "executable": false
+                }
+            },
+            "ref": "9b4ce715a4cc9b36cca564e62c1dc93dc774d532"
+        }
+    }
+}
